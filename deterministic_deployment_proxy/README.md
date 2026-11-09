@@ -26,12 +26,13 @@ OUTPUT=$(curl -s -X POST 'https://nile.trongrid.io/jsonrpc' \
     "id": 64
   }' | jq -r '.result')
 HEX=${OUTPUT#0x}
-echo $(( ${#HEX} / 2 )) 
+echo $HEX >> output/output.hex
+echo $(( ${#HEX} / 2 )) bytes
 ```
 
 2. Confirm runtime hash (expected: `0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891`)
 
 ```bash
    brew install sha3sum    #Optional, you may use any keccak-256 checksum utility
-   keccak-256sum -x deterministic_deployment_proxy/output/output.hex
+   keccak-256sum -x output/output.hex
 ```

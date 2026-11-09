@@ -30,7 +30,7 @@ OUTPUT=$(curl -s -X POST 'https://nile.trongrid.io/jsonrpc' \
     "id": 64
   }' | jq -r '.result')
 HEX=${OUTPUT#0x}
-echo $HEX >> output.hex
+echo $HEX >> output/output.hex
 echo $(( ${#HEX} / 2 )) 
 ```
 
@@ -38,5 +38,5 @@ echo $(( ${#HEX} / 2 ))
 
 ```bash
    brew install sha3sum    #Optional, you may use any keccak-256 checksum utility
-   keccak-256sum -x evm_compiler/output/output.hex
+   keccak-256sum -x output/output.hex
 ```
